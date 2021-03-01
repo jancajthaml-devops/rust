@@ -31,6 +31,7 @@ ENV CC gcc
 ENV CXX g++
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
 ENV XDG_CONFIG_HOME /usr/share
+ENV PKG_CONFIG_ALLOW_CROSS 1
 
 RUN dpkg --add-architecture armhf
 RUN dpkg --add-architecture amd64
