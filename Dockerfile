@@ -88,6 +88,7 @@ RUN \
 
 RUN \
     rustup update && \
-    rustup component add clippy
+    rustup component add clippy && \
+    rustup component add rustfmt
 
 ENTRYPOINT [ "rustc" ]
