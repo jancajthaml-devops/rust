@@ -85,4 +85,8 @@ RUN \
     rm rustup-init; \
     chmod -R a+w ${RUSTUP_HOME} ${CARGO_HOME}
 
+RUN \
+    rustup update && \
+    rustup component add clippy
+
 ENTRYPOINT [ "rustc" ]
