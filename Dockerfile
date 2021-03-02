@@ -47,6 +47,7 @@ RUN \
       grc \
       tar \
       pkg-config \
+      binutils \
       gcc \
       gcc-arm-linux-gnueabi \
       gcc-arm-linux-gnueabihf \
