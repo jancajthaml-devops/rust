@@ -88,6 +88,12 @@ RUN \
 
 RUN \
     rustup update && \
+    rustup target add armv7-unknown-linux-gnueabihf && \
+    rustup target add aarch64-unknown-linux-gnu && \
+    rustup target add x86_64-unknown-linux-gnu && \
+    rustup toolchain install ${RUST_VERSION}-armv7-unknown-linux-gnueabihf && \
+    rustup toolchain install ${RUST_VERSION}-aarch64-unknown-linux-gnu && \
+    rustup toolchain install ${RUST_VERSION}-x86_64-unknown-linux-gnu && \
     rustup component add clippy && \
     rustup component add rustfmt
 
