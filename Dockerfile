@@ -14,7 +14,7 @@
 
 # ---------------------------------------------------------------------------- #
 
-FROM amd64/debian:buster-slim
+FROM amd64/debian:sid-slim
 
 ENV container docker
 ENV LANG C.UTF-8
@@ -22,7 +22,7 @@ ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE no
 ENV LDFLAGS "-Wl,-z,-now -Wl,-z,relro"
-ENV RUST_VERSION 1.50.0
+ENV RUST_VERSION 1.56.1
 ENV LIBRARY_PATH /usr/lib
 ENV LD_LIBRARY_PATH /usr/lib
 ENV RUSTUP_HOME /usr/local/rustup
@@ -60,12 +60,12 @@ RUN \
       libc6-armhf-cross \
       libc6-dev \
       libc6-dev-armhf-cross \
-      libzmq5:amd64>=4.2.1~ \
-      libzmq5:armhf>=4.2.1~ \
-      libzmq5:arm64>=4.2.1~ \
-      libzmq3-dev:amd64>=4.2.1~ \
-      libzmq3-dev:armhf>=4.2.1~ \
-      libzmq3-dev:arm64>=4.2.1~ && \
+      libzmq5:amd64>=4.3~ \
+      libzmq5:armhf>=4.3~ \
+      libzmq5:arm64>=4.3~ \
+      libzmq3-dev:amd64>=4.3~ \
+      libzmq3-dev:armhf>=4.3~ \
+      libzmq3-dev:arm64>=4.3~ && \
     \
     apt-get clean autoclean && \
     apt-get autoremove --yes && \
