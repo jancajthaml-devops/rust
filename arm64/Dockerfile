@@ -14,7 +14,7 @@
 
 # ---------------------------------------------------------------------------- #
 
-FROM --platform=linux/arm64/v8 aarch64/debian:stretch-slim
+FROM --platform=linux/arm64/v8 arm64v8/debian:sid-slim
 
 ENV container docker
 ENV LANG C.UTF-8
