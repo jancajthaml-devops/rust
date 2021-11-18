@@ -14,7 +14,7 @@
 
 # ---------------------------------------------------------------------------- #
 
-FROM amd64/debian:sid-slim
+FROM --platform=linux/amd64 amd64/debian:stretch-slim
 
 ENV container docker
 ENV LANG C.UTF-8
@@ -31,16 +31,12 @@ ENV CC gcc
 ENV CXX g++
 ENV PATH="${CARGO_HOME}/bin:${PATH}"
 ENV XDG_CONFIG_HOME /usr/share
-ENV PKG_CONFIG_ALLOW_CROSS 1
-
-RUN dpkg --add-architecture armhf
-RUN dpkg --add-architecture amd64
-RUN dpkg --add-architecture arm64
+ENV PKG_CONFIG_ALLOW_CROSS 0
 
 RUN \
     echo "installing debian packages" && \
     apt-get update && \
-    apt-get -y install --no-install-recommends \
+    apt-get -y --allow-unauthenticated install --no-install-recommends \
       ca-certificates \
       wget \
       git \
@@ -49,23 +45,11 @@ RUN \
       pkg-config \
       binutils \
       gcc \
-      gcc-arm-linux-gnueabi \
-      gcc-arm-linux-gnueabihf \
-      gcc-aarch64-linux-gnu \
       g++ \
-      g++-arm-linux-gnueabi \
-      g++-arm-linux-gnueabihf \
-      g++-aarch64-linux-gnu \
       libc6 \
-      libc6-armhf-cross \
       libc6-dev \
-      libc6-dev-armhf-cross \
-      libzmq5:amd64>=4.3~ \
-      libzmq5:armhf>=4.3~ \
-      libzmq5:arm64>=4.3~ \
-      libzmq3-dev:amd64>=4.3~ \
-      libzmq3-dev:armhf>=4.3~ \
-      libzmq3-dev:arm64>=4.3~ && \
+      libzmq5>=4.3~ \
+      libzmq3-dev>=4.3~ && \
     \
     apt-get clean autoclean && \
     apt-get autoremove --yes && \
@@ -88,11 +72,7 @@ RUN \
 
 RUN \
     rustup update && \
-    rustup target add armv7-unknown-linux-gnueabihf && \
-    rustup target add aarch64-unknown-linux-gnu && \
     rustup target add x86_64-unknown-linux-gnu && \
-    rustup toolchain install ${RUST_VERSION}-armv7-unknown-linux-gnueabihf && \
-    rustup toolchain install ${RUST_VERSION}-aarch64-unknown-linux-gnu && \
     rustup toolchain install ${RUST_VERSION}-x86_64-unknown-linux-gnu && \
     rustup component add clippy && \
     rustup component add rustfmt

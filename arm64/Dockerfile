@@ -49,7 +49,7 @@ RUN \
       libc6 \
       libc6-dev \
       libzmq5>=4.3~ \
-      libzmq3-dev>=4.3~  && \
+      libzmq3-dev>=4.3~ && \
     \
     apt-get clean autoclean && \
     apt-get autoremove --yes && \
