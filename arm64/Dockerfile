@@ -44,8 +44,8 @@ RUN \
       tar \
       pkg-config \
       binutils \
-      gcc \
-      g++ \
+      clang-13 \
+      lld-13 \
       libc6 \
       libc6-dev \
       libzmq5>=4.3~ \
